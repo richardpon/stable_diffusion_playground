@@ -28,14 +28,16 @@ pipe = StableDiffusionXLPipeline.from_pretrained(
     torch_dtype=torch.float32  # or bfloat16 if supported
 )
 
-prompt = "Photo of a people camping in the forest with a lake in the foreground and mountains in the background"
+prompt = "Realistic Photo of a person doing martial arts, specifically Brazillian Jiu-Jitsu, wearing a white gi, and performing an armbar from guard"
+negative_prompt = "low quality, blurry, or bokeh effects"
 image = pipe(
     prompt=prompt,
-    height=512,
-    width=512,
-    num_inference_steps=60,
+    negative_prompt=negative_prompt,
+    height=1024,
+    width=1024,
+    num_inference_steps=50,
     safety_checker=None,
-    guidance_scale=8.0,
+    guidance_scale=9.0,
 ).images[0]
 
-image.save("output.png")
+image.save("bjj_armbar.png")
